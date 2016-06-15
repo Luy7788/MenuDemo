@@ -7,8 +7,8 @@ import "MenuView.h"
 
 ```    
     //传入需要右滑的view:DependencyView,以及左侧的菜单view:MenuView
-    MenuView *menu = [MenuView MenuViewWithDependencyView:self.view MenuView:demo isShowCoverView:YES];
-    //MenuView *menu = [[MenuView alloc]initWithDependencyView:self.view MenuView:demo isShowCoverView:YES];
+    MenuView *menu = [MenuView MenuViewWithDependencyView:self.view MenuView:menuView isShowCoverView:YES];
+    //MenuView *menu = [[MenuView alloc]initWithDependencyView:self.view MenuView:menuView isShowCoverView:NO];
     self.menu = menu;
 ```
 
