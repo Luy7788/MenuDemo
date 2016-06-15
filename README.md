@@ -3,7 +3,7 @@
 
 使用办法：
 
-#import "MenuView.h"
+import "MenuView.h"
 
 ```    
     //传入需要右滑的view:DependencyView,以及左侧的菜单view:MenuView
