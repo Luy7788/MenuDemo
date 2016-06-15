@@ -24,7 +24,7 @@
     [self.view setBackgroundColor:[UIColor lightGrayColor]];
     
     
-    LeftMenuViewDemo *demo = [[LeftMenuViewDemo alloc]initWithFrame:CGRectMake(0, 0, 200, [[UIScreen mainScreen] bounds].size.height)];
+    LeftMenuViewDemo *demo = [[LeftMenuViewDemo alloc]initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width * 0.8, [[UIScreen mainScreen] bounds].size.height)];
     demo.customDelegate = self;
     
     MenuView *menu = [MenuView MenuViewWithDependencyView:self.view MenuView:demo isShowCoverView:YES];
