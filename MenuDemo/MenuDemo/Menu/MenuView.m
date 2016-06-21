@@ -161,12 +161,10 @@
     
     // 根据被触摸手势的view计算得出坐标值
     CGPoint translation = [gesture translationInView:gesture.view];
-    //    NSLog(@"%@", NSStringFromCGPoint(translation));
     
     if(UIGestureRecognizerStateBegan == gesture.state ||
        UIGestureRecognizerStateChanged == gesture.state){
         
-        //        NSLog(@"进行中");
         if(translation.x <= self.menuViewframe.size.width){// && self.leftMenuView.frame.origin.x != 0
             
             if(translation.x <= 10){
@@ -188,7 +186,7 @@
         }
     }
     else{
-//        NSLog(@"结束");
+        //结束
         if(translation.x > self.menuViewframe.size.width/2){
             // 展开设置
             [self openMenuView];
@@ -237,7 +235,6 @@
     CGPoint translation = [recognizer translationInView:recognizer.view];
     static CGFloat BeganX;
     
-    //    NSLog(@"%@",NSStringFromCGPoint(translation));
     if(UIGestureRecognizerStateBegan == recognizer.state){
         BeganX = translation.x;
     }
@@ -246,7 +243,6 @@
     
     if(UIGestureRecognizerStateBegan == recognizer.state ||
        UIGestureRecognizerStateChanged == recognizer.state){
-        //        NSLog(@"%@   %f,",NSStringFromCGPoint(translation),Place);
         
         if(Place <= self.leftMenuView.frame.size.width &&  Place >0){
             
@@ -280,7 +276,7 @@
         }
         
     }else{
-//        NSLog(@"结束");
+        //结束
         if(Place > self.menuViewframe.size.width/2){
             // 收起设置
             [self closeMenuView];

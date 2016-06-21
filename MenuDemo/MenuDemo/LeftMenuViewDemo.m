@@ -29,18 +29,16 @@
 
 -(void)initView{
     
-//    UIView *leftView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 200, 568)];
-//    [leftView setBackgroundColor:[UIColor whiteColor]];
-    
     //添加头部
     UIView *headerView     = [[UIView alloc]initWithFrame:CGRectMake(0, 0, Frame_Width, 90)];
-    [headerView setBackgroundColor:[UIColor grayColor]];
+    [headerView setBackgroundColor:[UIColor purpleColor]];
     CGFloat width          = 90/2;
     
     UIImageView *imageview = [[UIImageView alloc]initWithFrame:CGRectMake(12, (90 - width) / 2, width, width)];
-    [imageview setBackgroundColor:[UIColor redColor]];
+//    [imageview setBackgroundColor:[UIColor redColor]];
     imageview.layer.cornerRadius = imageview.frame.size.width / 2;
     imageview.layer.masksToBounds = YES;
+    [imageview setImage:[UIImage imageNamed:@"HeadIcon"]];
     [headerView addSubview:imageview];
     
     
@@ -49,7 +47,10 @@
     arrow.contentMode      = UIViewContentModeScaleAspectFit;
     [arrow setImage:[UIImage imageNamed:@"person-icon0"]];
     [headerView addSubview:arrow];
-
+    
+    UILabel *NameLabel = [[UILabel alloc]initWithFrame:CGRectMake(imageview.frame.size.width + imageview.frame.origin.x * 2, imageview.frame.origin.y, 90, imageview.frame.size.height)];
+    [NameLabel setText:@"隔壁老王"];
+    [headerView addSubview:NameLabel];
     
     [self addSubview:headerView];
     
@@ -70,7 +71,7 @@
     //添加尾部
     width              = 90;
     UIView *footerView = [[UIView alloc]initWithFrame:CGRectMake(0, self.frame.size.height - headerView.frame.size.height, Frame_Width, self.frame.size.height)];
-    [footerView setBackgroundColor:[UIColor grayColor]];
+    [footerView setBackgroundColor:[UIColor lightGrayColor]];
     
     UIImageView *LoginImageview = [[UIImageView alloc]initWithFrame:CGRectMake(8 + 5, (width - ImageviewWidth)/2, ImageviewWidth, ImageviewWidth)];
     [LoginImageview setImage:[UIImage imageNamed:@"person-icon8"]];
@@ -79,7 +80,6 @@
 
     
     [self addSubview:footerView];
-//    [self.leftMenuView addSubview:leftView];
 }
 
 
