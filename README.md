@@ -20,6 +20,6 @@ import "MenuView.h"
     [self.menu hidenWithAnimation];
 ```
 
- ![image](https://github.com/Super-lying/MenuDemo/blob/master/ScreenFlow.gif)
+ ![image](https://github.com/Super-lying/LyScrollMenu/blob/master/ScreenFlow.gif)
 
 }
