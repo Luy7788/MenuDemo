@@ -13,7 +13,6 @@
 
 #define MenuView_scale_of_Screen        0.8
 #define CoverViewAlpha                  0.7
-#define MenuViewBackgroundColor         [UIColor redColor]
 
 #define CoverViewBackGround [UIColor colorWithRed:52/255.0 green:52/255.0 blue:52/255.0 alpha:1.0]
 
@@ -79,7 +78,7 @@
     }
     
     [self setBackgroundColor:[UIColor clearColor]];
-    [self.leftMenuView setBackgroundColor:MenuViewBackgroundColor];
+//    [self.leftMenuView setBackgroundColor:MenuViewBackgroundColor];
 }
 
 
@@ -119,7 +118,7 @@
     if(_leftMenuView == nil){
         
         UIView *LeftView = [[UIView alloc]initWithFrame:self.menuViewframe];
-        _leftMenuView                   = LeftView;
+        _leftMenuView    = LeftView;
         
     }
     return _leftMenuView;
@@ -199,36 +198,6 @@
 }
 
 
--(void)openMenuView{
-    
-    [UIView animateWithDuration:0.3 animations:^{
-        CGFloat x           = 0;
-        CGFloat y           = self.menuViewframe.origin.y;
-        CGFloat w           = self.menuViewframe.size.width;
-        CGFloat h           = self.menuViewframe.size.height;
-        self.leftMenuView.frame = CGRectMake(x, y, w, h);
-        
-        self.coverView.frame    = self.coverViewframe;
-        self.coverView.alpha    = CoverViewAlpha;
-    }];
-}
-
--(void)closeMenuView{
-    
-    [UIView animateWithDuration:0.3 animations:^{
-        
-        CGFloat x           = -self.menuViewframe.size.width;
-        CGFloat y           = self.menuViewframe.origin.y;
-        CGFloat w           = self.menuViewframe.size.width;
-        CGFloat h           = self.menuViewframe.size.height;
-        self.leftMenuView.frame = CGRectMake(x, y, w, h);//self.LeftViewFrame;
-        self.coverView.frame    = CGRectMake(0, 0,kSCREEN_WIDTH, self.menuViewframe.size.height);
-        
-    } completion:^(BOOL finished) {
-        [self removeCoverAndMenuView];
-    }];
-}
-
 #pragma mark - coverView往左滑隐藏
 -(void)handleftPan:(UIPanGestureRecognizer*)recognizer{
     
@@ -287,6 +256,37 @@
         }
     }
     
+}
+
+
+-(void)openMenuView{
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        CGFloat x           = 0;
+        CGFloat y           = self.menuViewframe.origin.y;
+        CGFloat w           = self.menuViewframe.size.width;
+        CGFloat h           = self.menuViewframe.size.height;
+        self.leftMenuView.frame = CGRectMake(x, y, w, h);
+        
+        self.coverView.frame    = self.coverViewframe;
+        self.coverView.alpha    = CoverViewAlpha;
+    }];
+}
+
+-(void)closeMenuView{
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        
+        CGFloat x           = -self.menuViewframe.size.width;
+        CGFloat y           = self.menuViewframe.origin.y;
+        CGFloat w           = self.menuViewframe.size.width;
+        CGFloat h           = self.menuViewframe.size.height;
+        self.leftMenuView.frame = CGRectMake(x, y, w, h);//self.LeftViewFrame;
+        self.coverView.frame    = CGRectMake(0, 0,kSCREEN_WIDTH, self.menuViewframe.size.height);
+        
+    } completion:^(BOOL finished) {
+        [self removeCoverAndMenuView];
+    }];
 }
 
 
