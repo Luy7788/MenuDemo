@@ -11,7 +11,7 @@
 #define kSCREEN_WIDTH   [[UIScreen mainScreen] bounds].size.width
 #define kSCREEN_HEIGHT  [[UIScreen mainScreen] bounds].size.height
 
-#define MenuView_scale_of_Screen        0.8
+//#define MenuView_scale_of_Screen        0.8
 #define CoverViewAlpha                  0.7
 
 #define CoverViewBackGround [UIColor colorWithRed:52/255.0 green:52/255.0 blue:52/255.0 alpha:1.0]
@@ -45,20 +45,31 @@
     
     if(self = [super init]){
         self.isShowCoverView = isCover;
-        [self initView];
-        [self setDependencyView:dependencyView];
+
+        [self addPanGestureAtDependencyView:dependencyView];
         self.leftMenuView = leftmenuView;
-        if((CGRectEqualToRect(_coverViewframe, CGRectZero)) == NO){
-            self.menuViewframe = leftmenuView.frame;
-        }else{
-        }
+//      if((CGRectEqualToRect(_coverViewframe, CGRectZero)) == NO){
+        self.menuViewframe = leftmenuView.frame;
+//      }else{
+//      }
         self.coverViewframe = CGRectMake(self.menuViewframe.size.width, self.menuViewframe.origin.y, kSCREEN_WIDTH - self.menuViewframe.size.width, self.menuViewframe.size.height);
     }
     return self;
 }
 
+-(void)setIsShowCoverView:(BOOL)isShowCoverView
+{
+    _isShowCoverView = isShowCoverView;
 
--(void)setDependencyView:(UIView *)dependencyView{
+    if(self.isShowCoverView){
+        self.coverView.backgroundColor = CoverViewBackGround;
+    }else{
+        self.coverView.backgroundColor = [UIColor clearColor];
+    }
+
+}
+
+-(void)addPanGestureAtDependencyView:(UIView *)dependencyView{
     
     // 屏幕边缘pan手势(优先级高于其他手势)
     UIScreenEdgePanGestureRecognizer *leftEdgeGesture = \
@@ -69,17 +80,17 @@
 }
 
 
--(void)initView{
-    
-    if(self.isShowCoverView){
-        self.coverView.backgroundColor = CoverViewBackGround;
-    }else{
-        self.coverView.backgroundColor = [UIColor clearColor];
-    }
-    
-    [self setBackgroundColor:[UIColor clearColor]];
+//-(void)initView{
+
+//    if(self.isShowCoverView){
+//        self.coverView.backgroundColor = CoverViewBackGround;
+//    }else{
+//        self.coverView.backgroundColor = [UIColor clearColor];
+//    }
+//    
+//    [self setBackgroundColor:[UIColor clearColor]];
 //    [self.leftMenuView setBackgroundColor:MenuViewBackgroundColor];
-}
+//}
 
 
 -(void)show{
@@ -96,7 +107,6 @@
         self.leftMenuView.frame = self.menuViewframe;
         self.coverView.frame    = self.coverViewframe;
         self.coverView.alpha = CoverViewAlpha;
-
     }];
 }
 
@@ -149,15 +159,13 @@
 }
 
 
-
 #pragma mark - 屏幕往右滑处理
 - (void)handleLeftEdgeGesture:(UIScreenEdgePanGestureRecognizer *)gesture{
     
     UIWindow * window = [[UIApplication sharedApplication].delegate window];
     [window addSubview:self.coverView];
     [window addSubview:self.leftMenuView];
-    
-    
+
     // 根据被触摸手势的view计算得出坐标值
     CGPoint translation = [gesture translationInView:gesture.view];
     
@@ -176,8 +184,8 @@
             CGFloat h           = self.menuViewframe.size.height;
             self.leftMenuView.frame = CGRectMake(x, y, w, h);
             
-            self.coverView.frame    = CGRectMake(self.leftMenuView.frame.size.width+x, 0,kSCREEN_WIDTH-self.leftMenuView.frame.size.width-x, self.menuViewframe.size.height);
-            self.coverView.alpha    = CoverViewAlpha*(translation.x / self.menuViewframe.size.width);
+            self.coverView.frame    = CGRectMake(self.leftMenuView.frame.size.width+x, 0,kSCREEN_WIDTH-self.leftMenuView.frame.size.width-x, h);
+            self.coverView.alpha    = CoverViewAlpha*(translation.x / w);
         }else{
             
             self.leftMenuView.frame = self.menuViewframe;
@@ -212,37 +220,43 @@
     
     if(UIGestureRecognizerStateBegan == recognizer.state ||
        UIGestureRecognizerStateChanged == recognizer.state){
-        
+
+        CGFloat x           = 0 ;
+        CGFloat y           = self.menuViewframe.origin.y;
+        CGFloat w           = self.menuViewframe.size.width;
+        CGFloat h           = self.menuViewframe.size.height;
+
         if(Place <= self.leftMenuView.frame.size.width &&  Place >0){
             
-            CGFloat x           = 0 - Place;
-            CGFloat y           = self.menuViewframe.origin.y;
-            CGFloat w           = self.menuViewframe.size.width;
-            CGFloat h           = self.menuViewframe.size.height;
-            self.leftMenuView.frame = CGRectMake(x, y, w, h);
-            
-            self.coverView.frame    = CGRectMake(self.leftMenuView.frame.size.width-Place, 0,kSCREEN_WIDTH-self.leftMenuView.frame.size.width+Place, self.menuViewframe.size.height);
-            self.coverView.alpha    = CoverViewAlpha*((w - Place) / self.menuViewframe.size.width);
+            x  = 0 - Place;
+
+//            self.leftMenuView.frame = CGRectMake(x, y, w, h);
+
+            self.coverView.frame    = CGRectMake(self.leftMenuView.frame.size.width-Place, 0,kSCREEN_WIDTH-self.leftMenuView.frame.size.width+Place, h);
+            self.coverView.alpha    = CoverViewAlpha*((w - Place) / w);
+
         }else if(Place >0){
             
-            CGFloat x           = -self.menuViewframe.size.width;
-            CGFloat y           = self.menuViewframe.origin.y;
-            CGFloat w           = self.menuViewframe.size.width;
-            CGFloat h           = self.menuViewframe.size.height;
-            self.leftMenuView.frame = CGRectMake(x, y, w, h);//self.LeftViewFrame;
-            self.coverView.frame    = CGRectMake(0, 0,kSCREEN_WIDTH, self.menuViewframe.size.height);
+             x  = - self.menuViewframe.size.width;
+//            CGFloat y           = self.menuViewframe.origin.y;
+//            CGFloat w           = self.menuViewframe.size.width;
+//            CGFloat h           = self.menuViewframe.size.height;
+//            self.leftMenuView.frame = CGRectMake(x, y, w, h);//self.LeftViewFrame;
+            self.coverView.frame    = CGRectMake(0, 0,kSCREEN_WIDTH,h);
             
         }else{
             
-            CGFloat x           = 0;
-            CGFloat y           = self.menuViewframe.origin.y;
-            CGFloat w           = self.menuViewframe.size.width;
-            CGFloat h           = self.menuViewframe.size.height;
-            self.leftMenuView.frame = CGRectMake(x, y, w, h);
-            
-            self.coverView.frame    = CGRectMake(self.leftMenuView.frame.size.width, 0,kSCREEN_WIDTH-self.leftMenuView.frame.size.width, self.menuViewframe.size.height);
+            x = 0;
+//            CGFloat y           = self.menuViewframe.origin.y;
+//            CGFloat w           = self.menuViewframe.size.width;
+//            CGFloat h           = self.menuViewframe.size.height;
+
+            self.coverView.frame    = CGRectMake(self.leftMenuView.frame.size.width, 0,kSCREEN_WIDTH-self.leftMenuView.frame.size.width, h);
             self.coverView.alpha    = CoverViewAlpha;
         }
+
+         self.leftMenuView.frame = CGRectMake(x, y, w, h);
+
         
     }else{
         //结束
@@ -293,7 +307,7 @@
 
 #pragma mark - 点击遮盖移除
 -(void)coverTap{
-    
+
     [UIView animateKeyframesWithDuration:0.3 delay:0 options:UIViewKeyframeAnimationOptionLayoutSubviews animations:^{
         self.leftMenuView.frame = CGRectMake(-self.menuViewframe.size.width, 0, self.menuViewframe.size.width, self.menuViewframe.size.height);
         self.coverView.frame    = CGRectMake(0, 0,kSCREEN_WIDTH, kSCREEN_HEIGHT);
@@ -321,31 +335,31 @@
 }
 
 
- 
--(CGRect)menuViewframe{
-    
-    if((CGRectEqualToRect(_menuViewframe,CGRectZero)) == YES){
-        
-        //设置左侧菜单
-        CGFloat w                   = kSCREEN_WIDTH * MenuView_scale_of_Screen;
-        CGFloat h                   = kSCREEN_HEIGHT;
-        CGFloat x                   = 0;
-        CGFloat y                   = 0;
-        _menuViewframe = CGRectMake(x , y , w , h);
-    }
-    return _menuViewframe;
-}
-
-
-
--(CGRect)coverViewframe{
-    
-    if((CGRectEqualToRect(_coverViewframe, CGRectZero)) == YES){
-         
-        _coverViewframe = CGRectMake(self.menuViewframe.size.width, self.menuViewframe.origin.y, kSCREEN_WIDTH - self.menuViewframe.size.width, self.menuViewframe.size.height);
-    }
-    return _coverViewframe;
-}
+// 
+//-(CGRect)menuViewframe{
+//    
+//    if((CGRectEqualToRect(_menuViewframe,CGRectZero)) == YES){
+//        
+//        //设置左侧菜单
+//        CGFloat w                   = kSCREEN_WIDTH * MenuView_scale_of_Screen;
+//        CGFloat h                   = kSCREEN_HEIGHT;
+//        CGFloat x                   = 0;
+//        CGFloat y                   = 0;
+//        _menuViewframe = CGRectMake(x , y , w , h);
+//    }
+//    return _menuViewframe;
+//}
+//
+//
+//
+//-(CGRect)coverViewframe{
+//
+//     if((CGRectEqualToRect(_coverViewframe, CGRectZero)) == YES){
+//         
+//        _coverViewframe = CGRectMake(self.menuViewframe.size.width, self.menuViewframe.origin.y, kSCREEN_WIDTH - self.menuViewframe.size.width, self.menuViewframe.size.height);
+//    }
+//    return _coverViewframe;
+//}
 
 
 

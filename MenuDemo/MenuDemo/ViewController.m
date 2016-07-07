@@ -10,10 +10,12 @@
 
 #import "MenuView.h"
 #import "LeftMenuViewDemo.h"
+#import "SecondViewController.h"
 
 @interface ViewController ()<HomeMenuViewDelegate>
-@property (nonatomic ,strong)MenuView      *menu;
-//@property (nonatomic ,strong)LeftMenuViewDemo   *leftDemo;
+
+@property (nonatomic ,strong)MenuView   * menu;
+
 @end
 
 @implementation ViewController
@@ -26,10 +28,8 @@
     
     LeftMenuViewDemo *demo = [[LeftMenuViewDemo alloc]initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width * 0.8, [[UIScreen mainScreen] bounds].size.height)];
     demo.customDelegate = self;
-    
-    MenuView *menu = [MenuView MenuViewWithDependencyView:self.view MenuView:demo isShowCoverView:YES];
-//    MenuView *menu = [[MenuView alloc]initWithDependencyView:self.view MenuView:demo isShowCoverView:YES];
-    self.menu = menu;
+
+    self.menu = [[MenuView alloc]initWithDependencyView:self.view MenuView:demo isShowCoverView:YES];
 
 }
 
@@ -40,8 +40,13 @@
 
 -(void)LeftMenuViewClick:(NSInteger)tag{
     [self.menu hidenWithAnimation];
-    NSString *tagstr = [NSString stringWithFormat:@"%d",tag];
-    [[[UIAlertView alloc] initWithTitle:@"提示" message:tagstr delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil] show];
+ 
+    NSLog(@"tag = %lu",tag);
+
+    if (tag == 5) {
+        [self.navigationController pushViewController:[SecondViewController new] animated:YES];
+    }
+
 }
 
 

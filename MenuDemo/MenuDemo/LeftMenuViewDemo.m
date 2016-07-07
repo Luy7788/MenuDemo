@@ -28,10 +28,11 @@
 }
 
 -(void)initView{
-    
+
+    self.backgroundColor = [UIColor whiteColor];
     //添加头部
     UIView *headerView     = [[UIView alloc]initWithFrame:CGRectMake(0, 0, Frame_Width, 90)];
-    [headerView setBackgroundColor:[UIColor purpleColor]];
+    [headerView setBackgroundColor:[UIColor orangeColor]];
     CGFloat width          = 90/2;
     
     UIImageView *imageview = [[UIImageView alloc]initWithFrame:CGRectMake(12, (90 - width) / 2, width, width)];
@@ -56,7 +57,7 @@
     
     
     //中间tableview
-    UITableView *contentTableView        = [[UITableView alloc]initWithFrame:CGRectMake(0, headerView.frame.size.height, Frame_Width, self.frame.size.height - headerView.frame.size.height * 2)
+    UITableView *contentTableView        = [[UITableView alloc]initWithFrame:CGRectMake(0, headerView.frame.size.height, Frame_Width, self.frame.size.height - headerView.frame.size.height - 50)
                                                                        style:UITableViewStylePlain];
     [contentTableView setBackgroundColor:[UIColor whiteColor]];
     contentTableView.dataSource          = self;
@@ -69,15 +70,8 @@
     [self addSubview:contentTableView];
     
     //添加尾部
-    width              = 90;
-    UIView *footerView = [[UIView alloc]initWithFrame:CGRectMake(0, self.frame.size.height - headerView.frame.size.height, Frame_Width, self.frame.size.height)];
+    UIView *footerView = [[UIView alloc]initWithFrame:CGRectMake(0, self.frame.size.height - 50, Frame_Width, 40)];
     [footerView setBackgroundColor:[UIColor lightGrayColor]];
-    
-    UIImageView *LoginImageview = [[UIImageView alloc]initWithFrame:CGRectMake(8 + 5, (width - ImageviewWidth)/2, ImageviewWidth, ImageviewWidth)];
-    [LoginImageview setImage:[UIImage imageNamed:@"person-icon8"]];
-    [footerView addSubview:LoginImageview];
-    width = 30;
-
     
     [self addSubview:footerView];
 }
