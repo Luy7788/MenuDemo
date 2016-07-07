@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		41ABFA9F1D2E0592001D6FAB /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41ABFA9E1D2E0592001D6FAB /* SecondViewController.m */; };
 		CE19E0111D093F6300180CF5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CE19E0101D093F6300180CF5 /* main.m */; };
 		CE19E0141D093F6300180CF5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CE19E0131D093F6300180CF5 /* AppDelegate.m */; };
 		CE19E0171D093F6300180CF5 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE19E0161D093F6300180CF5 /* ViewController.m */; };
@@ -18,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		41ABFA9D1D2E0592001D6FAB /* SecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
+		41ABFA9E1D2E0592001D6FAB /* SecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		CE19E00C1D093F6300180CF5 /* MenuDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MenuDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE19E0101D093F6300180CF5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		CE19E0121D093F6300180CF5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -71,6 +74,8 @@
 				CEEB93941D0DAE0F00EE4C70 /* LeftMenuViewDemo.m */,
 				CE19E0151D093F6300180CF5 /* ViewController.h */,
 				CE19E0161D093F6300180CF5 /* ViewController.m */,
+				41ABFA9D1D2E0592001D6FAB /* SecondViewController.h */,
+				41ABFA9E1D2E0592001D6FAB /* SecondViewController.m */,
 				CE19E0181D093F6300180CF5 /* Main.storyboard */,
 				CE19E01B1D093F6300180CF5 /* Assets.xcassets */,
 				CE19E01D1D093F6300180CF5 /* LaunchScreen.storyboard */,
@@ -167,6 +172,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				41ABFA9F1D2E0592001D6FAB /* SecondViewController.m in Sources */,
 				CE19E0171D093F6300180CF5 /* ViewController.m in Sources */,
 				CE19E02D1D0940FD00180CF5 /* MenuView.m in Sources */,
 				CE19E0141D093F6300180CF5 /* AppDelegate.m in Sources */,
