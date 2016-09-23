@@ -70,7 +70,7 @@
     [self addSubview:contentTableView];
     
     //添加尾部
-    UIView *footerView = [[UIView alloc]initWithFrame:CGRectMake(0, self.frame.size.height - 50, Frame_Width, 40)];
+    UIView *footerView = [[UIView alloc]initWithFrame:CGRectMake(0, self.frame.size.height - 50, Frame_Width, 50)];
     [footerView setBackgroundColor:[UIColor lightGrayColor]];
     
     [self addSubview:footerView];
