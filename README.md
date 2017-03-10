@@ -19,7 +19,7 @@ import "MenuView.h"
     //关闭菜单栏带动画效果
     [self.menu hidenWithAnimation];
     //关闭菜单不带动画效果
-    [self.menu hidenWithAnimation];
+    [self.menu hidenWithoutAnimation];
 ```
 
  ![image](https://github.com/Super-lying/MenuDemo/blob/master/ScreenFlow.gif)
